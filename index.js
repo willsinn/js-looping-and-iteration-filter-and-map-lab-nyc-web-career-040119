@@ -47,14 +47,40 @@ function getDriverName(driver) {
 
 function exactMatch(driversArr, driverProp) {
   let searchValue = Object.values(driverProp);
-  let result=[];
+  let allDriversNames = driversArr.map(driver => getDriverName(driver));
+  let allDriverRevenues = driversArr.map(driver => getDriverRevenue(driver));
 
   if(typeof searchValue[0]==='string') {
-    return searchValue;
-    //logic for strings
+    let value=searchValue[0];
+    let nameResult=[];
+    for (let i=0; i<allDriversNames.length;i++) {
+      let name = allDriversNames[i];
+      let richBoy = i;
+      if (value === name) {
+      let winnerObj = driversArr[richBoy];
+      nameResult.push(winnerObj);
+      }
+    }
+    return nameResult;   //logic for strings
   } else {
-    //logic for integers
+    let value=searchValue[0];
+    let revenueResult=[];
+    for (let i=0; i<allDriverRevenues.length;i++) {
+      let amount = allDriverRevenues[i];
+      let richBoy = i;
+      if (amount === value) {
+      let winnerObj = driversArr[richBoy];
+      revenueResult.push(winnerObj);
+      }
+    }
+    return revenueResult;    //logic for integers
   }
+}
+
+function exactMatchToList() {
+  result=[];
+
+
 
   return result;
 }
